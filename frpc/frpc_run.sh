@@ -3,17 +3,17 @@
 ### @from <a href="https://xxx.com">xxx</a> ###
 
 ### 生成客户端配置文件 ###
-read -p "input server ip: " server_ip # 定义服务程序公网
-read -p "input server port: " server_port # 定义服务程序公网
-read -p "input flow port: " flow_port # 定义服务程序公网
+read -p "input server ip(xxx.xxx.xxx): " server_ip # 定义服务程序公网
+read -p "input server port(7000): " server_port    # 定义服务程序公网
+read -p "input flow port(6000): " flow_port        # 定义服务程序公网
 
 toml_file_path="./frpc.toml" # 定义配置文件路径
 
 if [ -f "$toml_file_path" ]; then # 生成新的配置文件
-    rm -f "$toml_file_path"
-    echo "The old toml file has been deleted: $toml_file_path."
+  rm -f "$toml_file_path"
+  echo "The old toml file has been deleted: $toml_file_path."
 fi
-cat <<EOF > "$toml_file_path" 
+cat <<EOF >"$toml_file_path"
 ### @author <a href="https://github.com/xiaogithubooo">limou3434</a> ###
 ### @from <a href="https://xxx.com">xxx</a> ###
 
@@ -36,11 +36,11 @@ script_dir=$(realpath $(dirname "$0")) # 定义服务工作目录
 service_file_path="/etc/systemd/system/frpc.service" # 定义服务文件路径
 
 if [ -f "$service_file_path" ]; then # 生成新的服务文件
-    sudo systemctl stop frpc.service
-    rm -f "$service_file_path"
-    echo "The old service file has been deleted: $service_file_path."
+  sudo systemctl stop frpc.service
+  rm -f "$service_file_path"
+  echo "The old service file has been deleted: $service_file_path."
 fi
-cat <<EOF > "$service_file_path"
+cat <<EOF >"$service_file_path"
 ### @author <a href="https://github.com/xiaogithubooo">limou3434</a> ###
 ### @from <a href="https://xxx.com">xxx</a> ###
 
@@ -75,3 +75,4 @@ sudo systemctl start frpc.service
 sudo ufw allow $server_port
 
 echo "successful: The work-Intranet-penetration service is runing..."
+

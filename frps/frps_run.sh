@@ -35,10 +35,10 @@ read -p "input flow port(6000): " flow_port
 # 生成新的配置文件
 toml_file="./$bind_name.toml"
 if [ -f "$toml_file" ]; then
-    rm -f "$toml_file"
-    echo "The old toml file has been deleted: $toml_file."
+  rm -f "$toml_file"
+  echo "The old toml file has been deleted: $toml_file."
 fi
-cat <<EOF > "$toml_file" 
+cat <<EOF >"$toml_file"
 ### @author <a href="https://github.com/xiaogithubooo">limou3434</a> ###
 ### @from <a href="https://xxx.com">xxx</a> ###
 
@@ -54,15 +54,15 @@ EOF
 echo "The new toml file has been generated: $toml_file."
 
 ### 生成服务端服务文件 ###
-script_dir=$(realpath $(dirname "$0")) # 定义服务工作路径
+script_dir=$(realpath $(dirname "$0"))                     # 定义服务工作路径
 service_file_path="/etc/systemd/system/$bind_name.service" # 定义服务文件路径
 
 if [ -f "$service_file_path" ]; then # 生成新的服务文件
-    sudo systemctl stop frps.service
-    rm -f "$service_file_path"
-    echo "The old service file has been deleted: $service_file_path."
+  sudo systemctl stop frps.service
+  rm -f "$service_file_path"
+  echo "The old service file has been deleted: $service_file_path."
 fi
-sudo cat <<EOF > "$service_file_path"
+sudo cat <<EOF >"$service_file_path"
 ### @author <a href="https://github.com/xiaogithubooo">limou3434</a> ###
 ### @from <a href="https://xxx.com">xxx</a> ###
 
